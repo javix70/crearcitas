@@ -11,11 +11,20 @@ const Formulario = () => {
     sintomas: ''    
   })
 
-  const handleChange = () => (
-    console.log('awaa ...')
-  )
-  
-  
+  const _handleChange = e => {
+    setCita({
+      //array destructuring, este es un truco para escribir el valor dentro de la propiedad
+      //spread operator , crea una copia
+      ...cita,
+      [e.target.name]: e.target.value 
+
+    })
+  }
+
+  //destructuring , extraer los valores
+  const {mascota,propietario,fecha,hora,sintomas} = cita
+
+    
   return (
     <>
     <h2>Crear Citas</h2>
@@ -27,7 +36,8 @@ const Formulario = () => {
         name='mascota'
         className='u-full-width'
         placeholder='Nombre Mascota'
-        onChange={handleChange}
+        onChange={_handleChange}
+        value={mascota}
         />
       <label>Nombre del dueño</label>
       <input 
@@ -35,27 +45,31 @@ const Formulario = () => {
         name='propietario'
         className='u-full-width'
         placeholder='Nombre propietario'
-        onChange={handleChange}
+        onChange={_handleChange}
+        value={propietario}
         />
       <label>Fecha</label>
       <input 
         type='date'
         name='fecha'
         className='u-full-width'
-        onChange={handleChange}
+        onChange={_handleChange}
+        value={fecha}
         />
       <label>Hora</label>
       <input 
         type='time'
         name='hora'
         className='u-full-width'
-        onChange={handleChange}
+        onChange={_handleChange}
+        value={hora}
         />
       <label>Sintomas</label>
       <textarea 
         name='sintomas'
         className= 'u-full-width'
-        onChange={handleChange}
+        onChange={_handleChange}
+        value={sintomas}
       ></textarea>
         <button
           type='submit'
