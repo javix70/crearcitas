@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid';
 
 const Formulario = () => {
 
@@ -10,6 +11,7 @@ const Formulario = () => {
     hora: '',
     sintomas: ''    
   })
+  const [error, setError] = useState(false)
 
   const _handleChange = e => {
     setCita({
@@ -24,12 +26,37 @@ const Formulario = () => {
   //destructuring , extraer los valores
   const {mascota,propietario,fecha,hora,sintomas} = cita
 
+  //enviar formulario
+  const _handleSubmit = (e) => {
+    e.preventDefault()
+
+    //Validar para romper el ciclo, agregar return  
+    if(mascota.trim() === '' || propietario.trim() === '' || fecha.trim() === '' || hora.trim() === '' || sintomas.trim() === '' ){
+      setError(true)
+      return
+    } 
+    //eliminar le mensaje previo
+    setError(false)
+
+    //Asignar un ID
+    cita.id = uuidv4()
+    console.log(cita)
+
+    //Crear la cita
+
+    //Reiniciar el form
+
+  }
+
     
   return (
     <>
     <h2>Crear Citas</h2>
+    {error ? <p className='alert-error'>Todos los campos son requeridos</p> : null }
 
-    <form >
+    <form
+      onSubmit={_handleSubmit}
+    >
       <label>Nombre de la mascota</label>
       <input 
         type='text'
