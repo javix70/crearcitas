@@ -1,1 +1,1 @@
-https://determined-clarke-834489.netlify.app app in netlify
+https://elated-snyder-9220a6.netlify.app/
